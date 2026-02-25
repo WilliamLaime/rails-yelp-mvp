@@ -1,0 +1,18 @@
+<h1>Restaurants#show</h1>
+<div class="card mt-4" style="width: 50vw;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @restaurant.name %> <span class="badge text-bg-primary"><%= @restaurant.category %></span></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><%= @restaurant.phone_number %></h6>
+    <p class="card-text"><%= @restaurant.address %></p>
+    <ul><% @restaurant.reviews.each do |review| %>
+        <li class="pb-3"><%= review.rating %> - <%= review.content %> </li>
+      <% end %>
+    </ul>
+    <%= link_to "Mettre à jour cet restaurant", edit_restaurant_path(@restaurant), class: 'btn btn-success' %>
+    <%= link_to "Supprimer cet restaurant", restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: "Êtes vous sur?"}, class: 'btn btn-danger' %>
+    <%= link_to "Add review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+  </div>
+</div>
+
+
+<%= link_to "Retour à la liste", restaurants_path, class: 'btn btn-primary mt-4' %>
